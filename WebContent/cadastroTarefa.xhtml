@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+
+	<f:view>
+		<h:form>
+			<h:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputText value="Cadastro e consulta de Tarefas" />
+				</f:facet>
+
+				<h:outputLabel value="Nome Tarefa: " />
+				<h:inputText value="#{controllerCadastroTarefa.tarefa.descricao}" />
+
+				<h:commandButton action="#{controllerCadastroTarefa.salvar()}"
+					value="salvar" />
+
+				<h:commandButton
+					action="#{controllerConsultaTarefa.consultar()}" value="consultar" />
+
+				<h:dataTable var="tarefa"
+					value="#{controllerConsultaTarefa.listarTarefas()}" border="1"
+					cellspacing="0" cellpadding="2" rendered="#{controllerConsultaTarefa.habilita}" style="width: 300ox;">
+					<f:facet name="header">
+						<h:outputText value="Consulta"/>
+					</f:facet>
+					
+					<h:column>
+						<h:outputText value="#{tarefa.descricao}"/>
+					</h:column>
+				</h:dataTable>
+			</h:panelGrid>
+		</h:form>
+	</f:view>
+
+</body>
+</html>
